@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papers, Please — Historia interactiva</title>
+  <meta name="description" content="Historia de decisiones ambientada en el universo de Papers, Please. Siete finales, uno solo bueno.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== CABECERA ===================== -->
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand__logo" src="Logo.png" alt="Papers, Please" width="293" height="177">
+      <h1 class="brand__title visually-hidden">Papers, Please</h1>
+      <p class="brand__sub">Historia interactiva · Grestín Oriental, 1982</p>
+    </div>
+
+    <dl class="status" aria-label="Estado del inspector">
+      <div class="stat">
+        <dt>Día</dt>
+        <dd id="stat-day">—</dd>
+      </div>
+      <div class="stat">
+        <dt>Créditos</dt>
+        <dd id="stat-credits">0</dd>
+      </div>
+      <div class="stat">
+        <dt>Finales</dt>
+        <dd id="stat-endings">0/7</dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- ===================== CUERPO ===================== -->
+  <main class="layout">
+
+    <!-- Documento principal (el "cuadradito" actual) -->
+    <section class="stage" aria-live="polite">
+      <article class="doc" id="passage"></article>
+
+      <nav class="stage__nav">
+        <button class="btn btn--ghost" id="btn-back" type="button" disabled>◄ Volver</button>
+        <span class="stage__hint">Tip: usá las teclas <kbd>1</kbd>–<kbd>9</kbd> para elegir</span>
+      </nav>
+    </section>
+
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <section class="panel panel--legend">
+        <h2 class="panel__title">Leyenda</h2>
+        <ul class="legend">
+          <li class="legend__item legend__item--info">Info para leer / contexto</li>
+          <li class="legend__item legend__item--final">Finales</li>
+          <li class="legend__item legend__item--situacion">Situaciones</li>
+          <li class="legend__item legend__item--decision">Decisiones</li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel__title">Finales descubiertos</h2>
+        <ol class="endings" id="endings" aria-label="Finales descubiertos"></ol>
+        <p class="panel__note">Siete finales. Uno solo es bueno.</p>
+        <button class="btn btn--ghost btn--block" id="btn-new-game" type="button" disabled>Nueva partida</button>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel__title">Recorrido</h2>
+        <ol class="trail" id="trail"></ol>
+      </section>
+
+      <div class="sidebar__actions">
+        <button class="btn btn--olive" id="btn-about" type="button">Fundamentación</button>
+        <button class="btn btn--red" id="btn-reset" type="button">Reiniciar</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <p>Basado en <em>Papers, Please</em> (Lucas Pope, 2013). Los textos en azul son contexto inventado para este proyecto.</p>
+    <p class="footer__glory">Gloria a Arstotzka</p>
+  </footer>
+
+  <!-- ===================== MODAL (info / fundamentación) ===================== -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="modal__head">
+        <span class="modal__tag" id="modal-tag">Contexto</span>
+        <button class="modal__close" type="button" data-close aria-label="Cerrar">✕</button>
+      </header>
+      <h2 class="modal__title" id="modal-title"></h2>
+      <div class="modal__body" id="modal-body"></div>
+      <footer class="modal__foot">
+        <button class="btn btn--olive" type="button" data-close>Cerrar expediente</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="story.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
